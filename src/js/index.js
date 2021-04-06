@@ -26,7 +26,7 @@ function init(){
 	})
 }
 function cap(){
-	var im=imC.grabFrame().then(function(img){
+	var imC.grabFrame().then(function(img){
 		draw(img)
 	}).catch(function(err){
 		console.log("Frame Error: "+err)
