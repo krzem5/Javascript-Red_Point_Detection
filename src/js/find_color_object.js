@@ -5,15 +5,15 @@ function find_color_object(img,c,MAX_GROUP_DIST=50,MIN_GROUP_ITEMS=100){
 	ctx.canvas.width=img.width;
 	ctx.canvas.height=img.height;
 	ctx.drawImage(img,0,0);
-	let img=ctx.getImageData(0,0,img.width,img.height);
+	img_dt=ctx.getImageData(0,0,img.width,img.height);
 	let groups=[];
 	let x=0;
 	let y=0;
-	for (let i=0;i<img.data.length;i+=4){
+	for (let i=0;i<img_dt.data.length;i+=4){
 		let s=false;
 		for (let cl of c){
-			if (Math.abs(img.data[i]-cl[0])<=cl[3]&&Math.abs(img.data[i+1]-cl[1])<=cl[4]&&Math.abs(img.data[i+2]-cl[2])<=cl[5]){
-				img.data[i]=255;
+			if (Math.abs(img_dt.data[i]-cl[0])<=cl[3]&&Math.abs(img_dt.data[i+1]-cl[1])<=cl[4]&&Math.abs(img_dt.data[i+2]-cl[2])<=cl[5]){
+				img_dt.data[i]=255;
 				s=true;
 				break;
 			}
@@ -42,7 +42,7 @@ function find_color_object(img,c,MAX_GROUP_DIST=50,MIN_GROUP_ITEMS=100){
 			}
 		}
 		else{
-			img.data[i+3]=128;
+			img_dt.data[i+3]=128;
 		}
 		x++;
 		if (x==ctx.canvas.width){
@@ -75,7 +75,7 @@ function find_color_object(img,c,MAX_GROUP_DIST=50,MIN_GROUP_ITEMS=100){
 			}
 		}
 	}
-	ctx.putImageData(img,0,0);
+	ctx.putImageData(img_dt,0,0);
 	ctx.lineWidth=5;
 	ctx.strokeStyle="#00ff00";
 	for (let g of sl){
