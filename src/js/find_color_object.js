@@ -5,7 +5,7 @@ function find_color_object(img,c,MAX_GROUP_DIST=50,MIN_GROUP_ITEMS=100){
 	ctx.canvas.width=img.width;
 	ctx.canvas.height=img.height;
 	ctx.drawImage(img,0,0);
-	img_dt=ctx.getImageData(0,0,img.width,img.height);
+	let img_dt=ctx.getImageData(0,0,img.width,img.height);
 	let groups=[];
 	let x=0;
 	let y=0;
